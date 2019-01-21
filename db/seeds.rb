@@ -7,3 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Actor.create({first_name: "Benedict", last_name: "Cumberbatch", known_for: "Sherlock"})
+
+Movie.create({title: "The Princess Bride", year: 1987, plot: "Fencing, fighting, torture, revenge, giants, monsters, chases, escapes, true love, miracles..."})
+Movie.create({title: "Forrest Gump", year: 1994, plot: "A man sits on a park bench with a stranger and tells her his life story."})
