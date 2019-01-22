@@ -1,22 +1,52 @@
 class Api::ActorsController < ApplicationController
 
-  def actor_id_method 
-    @actor = Actor.find_by(id: 2)
-    render 'actor_id.json.jbuilder'
+  def index 
+    @actors = Actor.all
+    render 'index.json.jbuilder'
   end
 
-  def actor_query_method
-    @actor = params["actor"]
-    render 'actor.json.jbuilder'
+  def create
+    @actor = Actor.new(
+      first_name: params["first_name"],
+      last_name: params["last_name"],
+      known_for: params["known_for"]
+      )
+    @actor.save
+    render 'show.json.jbuilder'
   end
 
-  def actor_segment_method
-    @actor = params["wildcard"]
-    render 'actor.json.jbuilder'
+  def show
+    @actor = Actor.find(params["id"])
+    render 'show.json.jbuilder'  
   end
 
-  def actor_body_method
-    @actor = params[:actor]
-    render 'actor.json.jbuilder'
+  def update
+    @actor = Actor.find(params["id"])
+    @actor.first_name = params["first_name"] || @actor.first_name
+    @actor.last_name = params["last_name"] || @actor.last_name
+    @actor.known_for = params["known_for"] || @actor.known_for
+    @actor.save
+    render 'show.json.jbuilder'
   end
+
+  def destroy
+    @actor = Actor.find(params["id"])
+    @actor.destroy
+    render json: {message: "this actor has been deleted from your catalog"}
+  end
+
+#   def actor_query_method
+#     @actor = params["actor"]
+#     render 'actor.json.jbuilder'
+#   end
+
+#   def actor_segment_method
+#     @actor = params["wildcard"]
+#     render 'actor.json.jbuilder'
+#   end
+
+#   def actor_body_method
+#     @actor = params[:actor]
+#     render 'actor.json.jbuilder'
+#   end
 end

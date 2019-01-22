@@ -1,6 +1,9 @@
-json.title @movie.title
-json.year @movie.year
-json.plot @movie.plot
+json.array! @movies.each do |movies|
+  json.title @movie.title
+  json.year @movie.year
+  json.plot @movie.plot
+end
+  
 
   
 
