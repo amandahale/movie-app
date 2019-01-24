@@ -13,8 +13,11 @@ class Api::ActorsController < ApplicationController
       gender: params["gender"]
       age: params["age"]
       )
-    @actor.save
-    render 'show.json.jbuilder'
+    if @actor.save
+      render 'show.json.jbuilder'
+    else
+    render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -29,8 +32,11 @@ class Api::ActorsController < ApplicationController
     @actor.known_for = params["known_for"] || @actor.known_for
     @actor.gender = params["gender"] || @actor.gender
     @actor.age = params["age"] || @actor.age
-    @actor.save
-    render 'show.json.jbuilder'
+    if @actor.save
+      render 'show.json.jbuilder'
+    else
+    render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -38,19 +44,4 @@ class Api::ActorsController < ApplicationController
     @actor.destroy
     render json: {message: "this actor has been deleted from your catalog"}
   end
-
-#   def actor_query_method
-#     @actor = params["actor"]
-#     render 'actor.json.jbuilder'
-#   end
-
-#   def actor_segment_method
-#     @actor = params["wildcard"]
-#     render 'actor.json.jbuilder'
-#   end
-
-#   def actor_body_method
-#     @actor = params[:actor]
-#     render 'actor.json.jbuilder'
-#   end
 end

@@ -12,8 +12,11 @@ def index
       plot: params["plot"],
       director: params["director"]
       )
-    @movie.save
-    render 'show.json.jbuilder'
+    if @movie.save
+      render 'show.json.jbuilder'
+    else
+    render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -27,8 +30,11 @@ def index
     @movie.year = params["year"] || @movie.year
     @movie.plot = params["plot"] || @movie.plot
     @movie.director = params["director"] || @movie.director
-    @movie.save
-    render 'show.json.jbuilder'
+    if @movie.save
+      render 'show.json.jbuilder'
+    else
+    render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
