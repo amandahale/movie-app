@@ -21,6 +21,10 @@ Rails.application.routes.draw do
 
       delete "/movies/:id" => "movies#destroy"
 
+      post "/users" => "users#create"
+
+      post "/sessions" => "sessions#create"
+
       # get "/actor_query" => "actors#actor_query_method"
       # get "/actor_segment" => "actors#actor_segment_method"
       # post "/actor_body" => "actors#actor_body_method"
