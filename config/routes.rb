@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
       post "/sessions" => "sessions#create"
 
+      get "/movie_genres" => "movie_genres#index"
+      post "/movie_genres" => "movie_genres#create"
+
       # get "/actor_query" => "actors#actor_query_method"
       # get "/actor_segment" => "actors#actor_segment_method"
       # post "/actor_body" => "actors#actor_body_method"
