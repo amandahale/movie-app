@@ -1,0 +1,18 @@
+
+  <h2> <%= @movie.title %> </h2>
+  <h3>Plot: <%= @movie.plot %></h3>
+  <h3>Director: <%= @movie.director %></h3>
+  <h4>Year Released: <%= @movie.year %></h4>
+
+  <h2>Did you see this film? Write a review in the space provided:</h2>
+
+  <form action="/movies" method="post">
+    <textarea>Reccommendation goes HERE</textarea>
+    <div> Would you reccommend this film? Yes:
+      <input type="radio" name="rec">
+    </div>
+    <div class="button">
+      <button type="submit">Submit your review</button>
+    </div>
+
+</form>
